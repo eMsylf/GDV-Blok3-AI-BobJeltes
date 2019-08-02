@@ -8,6 +8,7 @@ public class Pathfinding : MonoBehaviour {
     public GameObject OpenListCube;
     public GameObject ClosedListCube;
     public GameObject Wall;
+    public TileGrid TileGrid;
 
     private Transform currentTransform;
     private List<Tile> openList;
@@ -15,6 +16,8 @@ public class Pathfinding : MonoBehaviour {
 
     private int z;
     private int countdown = 60;
+    [Range(1, 60)]
+    public int PathFindSpeed = 1;
     Vector3 targetPosition;
     public Transform Goal;
 
@@ -25,10 +28,12 @@ public class Pathfinding : MonoBehaviour {
     }
 
     private void Update() {
-        if (endGoalReached) { return; }
-        if (CanPlaceNewBlock()) {
-            PlaceBlock(ClosedListCube, targetPosition);
+        if (TileGrid.IsDone) {
             if (endGoalReached) { return; }
+            if (CanPlaceNewBlock()) {
+                PlaceBlock(ClosedListCube, targetPosition);
+                if (endGoalReached) { return; }
+        }
         //}
         //else if (Input.GetKeyDown(KeyCode.None)) {
         //    return;
@@ -44,7 +49,7 @@ public class Pathfinding : MonoBehaviour {
             return false;
         }
         else if (countdown > 0) {
-            countdown -= 1;
+            countdown -= PathFindSpeed;
             return false;
         } else {
             Debug.Log(targetPosition + " " + Goal.position);
@@ -56,8 +61,9 @@ public class Pathfinding : MonoBehaviour {
         }
     }
 
-    public void PlaceBlock(GameObject blockType, Vector3 targetPosition) {
-        Instantiate(blockType, targetPosition, Quaternion.identity);
+    public GameObject PlaceBlock(GameObject blockType, Vector3 targetPosition) {
+        GameObject placedBlock = Instantiate(blockType, targetPosition, Quaternion.identity);
+        return placedBlock;
     }
 
     //private void DetermineDirection() {
