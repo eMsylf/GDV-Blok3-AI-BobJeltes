@@ -53,7 +53,7 @@ public class TileGrid : MonoBehaviour {
                     i == gridWidth -1 || 
                     j == startPosZ || 
                     j == gridHeight -1) {
-                    Outline.Add(pathfinding.PlaceBlock(pathfinding.Wall, new Vector3(i, 0, j)));
+                    Outline.Add(pathfinding.PlaceBlock(pathfinding.Wall, new Vector3(i, 0, j), transform));
                     //yield return new WaitForSecondsRealtime(.1f);
                 }
             }
@@ -71,7 +71,7 @@ public class TileGrid : MonoBehaviour {
                     i == gridWidth - 1 ||
                     j == startPosZ ||
                     j == gridHeight - 1) {
-                    Outline.Add(pathfinding.PlaceBlock(pathfinding.Wall, new Vector3(i, 0, j)));
+                    Outline.Add(pathfinding.PlaceBlock(pathfinding.Wall, new Vector3(i, 0, j), transform));
                     yield return new WaitForEndOfFrame();
                 }
             }

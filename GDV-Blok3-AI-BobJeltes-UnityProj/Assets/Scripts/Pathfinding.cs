@@ -9,6 +9,7 @@ public class Pathfinding : MonoBehaviour {
     public GameObject ClosedListCube;
     public GameObject Wall;
     public TileGrid TileGrid;
+    public float DetectionRange = 1f;
 
     private Transform currentTransform;
     private List<Tile> openList;
@@ -23,23 +24,36 @@ public class Pathfinding : MonoBehaviour {
 
     private bool endGoalReached = false;
 
+    private LineRenderer lineRenderer;
+    public Vector3[] linePositions;
+
     private void Start() {
         currentTransform = transform;
+        if (GetComponent<LineRenderer>() == null) {
+            Debug.Log("No line renderer");
+        } else {
+            lineRenderer = GetComponent<LineRenderer>();
+        }
+
     }
 
     private void Update() {
         if (TileGrid.IsDone) {
+            TestBlock();
             if (endGoalReached) { return; }
             if (CanPlaceNewBlock()) {
                 PlaceBlock(ClosedListCube, targetPosition);
                 if (endGoalReached) { return; }
+            }
+            //}
+            //else if (Input.GetKeyDown(KeyCode.None)) {
+            //    return;
+            //} else {
+            //    DetermineDirection();
         }
-        //}
-        //else if (Input.GetKeyDown(KeyCode.None)) {
-        //    return;
-        //} else {
-        //    DetermineDirection();
-        }
+
+        
+
     }
 
     private bool CanPlaceNewBlock() {
@@ -47,13 +61,16 @@ public class Pathfinding : MonoBehaviour {
             endGoalReached = true;
             Debug.Log("<b>End goal reached</b>");
             return false;
-        }
-        else if (countdown > 0) {
+        } else if (countdown > 0) {
             countdown -= PathFindSpeed;
             return false;
         } else {
             Debug.Log(targetPosition + " " + Goal.position);
             z += 1;
+            targetPosition = transform.position + transform.right;
+
+            //TestBlock(targetPosition);
+
             targetPosition = transform.position + new Vector3(0, 0, z);
             //PlaceBlock(ClosedListCube, targetPosition);
             countdown = 30;
@@ -65,6 +82,29 @@ public class Pathfinding : MonoBehaviour {
         GameObject placedBlock = Instantiate(blockType, targetPosition, Quaternion.identity);
         return placedBlock;
     }
+
+    public GameObject PlaceBlock(GameObject blockType, Vector3 targetPosition, Transform parent) {
+        GameObject placedBlock = Instantiate(blockType, targetPosition, Quaternion.identity, parent);
+        return placedBlock;
+    }
+
+    private void TestBlock() {
+        Physics.Raycast(new Ray(transform.position, transform.right * -1), out RaycastHit hitInfo, DetectionRange);
+
+        linePositions.SetValue(transform.position, 0);
+        linePositions.SetValue(transform.position + transform.right * -1, 1);
+
+        lineRenderer.SetPositions(linePositions);
+
+        if (hitInfo.transform == null) {
+            Debug.Log("No object hit");
+            return;
+        }
+        if (hitInfo.transform.GetComponent<Wall>() != null) {
+            Debug.Log("Aah help there's a wall");
+        }
+    }
+
 
     //private void DetermineDirection() {
     //    if (!CanPlaceNewBlock()) {
