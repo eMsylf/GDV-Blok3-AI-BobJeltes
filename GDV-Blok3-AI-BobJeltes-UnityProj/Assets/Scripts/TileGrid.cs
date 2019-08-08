@@ -11,6 +11,7 @@ public class TileGrid : MonoBehaviour {
     public float nodeRadius;
     public float Distance;
 
+    public List<Material> materials;
     Tile[,] grid;
     Dictionary<Tile, Transform> keyValuePairs; // doe hier nog iets mee
 
@@ -34,6 +35,14 @@ public class TileGrid : MonoBehaviour {
     }
 
     private void Start() {
+        if (pathfinding == null) {
+            if (GetComponent<Pathfinding>() != null) {
+                pathfinding = GetComponent<Pathfinding>();
+                Debug.Log("Assigned pathfinding");
+            } else {
+                Debug.Log("Missing Pathfinding component!");
+            }
+        }
         StartCoroutine(CreateGridAnim());
 
         startPosX = (int)transform.position.x;
@@ -53,7 +62,7 @@ public class TileGrid : MonoBehaviour {
                     i == gridWidth -1 || 
                     j == startPosZ || 
                     j == gridHeight -1) {
-                    Outline.Add(pathfinding.PlaceBlock(pathfinding.Wall, new Vector3(i, 0, j), transform));
+                    Outline.Add(PlaceBlock(pathfinding.Wall, new Vector3(i, 0, j), transform));
                     //yield return new WaitForSecondsRealtime(.1f);
                 }
             }
@@ -71,7 +80,7 @@ public class TileGrid : MonoBehaviour {
                     i == gridWidth - 1 ||
                     j == startPosZ ||
                     j == gridHeight - 1) {
-                    Outline.Add(pathfinding.PlaceBlock(pathfinding.Wall, new Vector3(i, 0, j), transform));
+                    Outline.Add(PlaceBlock(pathfinding.Wall, new Vector3(i, 0, j), transform));
                     yield return new WaitForEndOfFrame();
                 }
             }
@@ -89,10 +98,21 @@ public class TileGrid : MonoBehaviour {
 
     private bool GridOutlineDone(bool isDone) {
         Debug.Log("<b>Grid outline is done: </b>" + isDone);
-        IsDone = isDone;
+        IsDone = isDone; // Pass to global variable
         if (isDone) {
             return false;
         }
         return true;
+    }
+
+
+    public GameObject PlaceBlock(GameObject blockType, Vector3 targetPosition) {
+        GameObject placedBlock = Instantiate(blockType, targetPosition, Quaternion.identity);
+        return placedBlock;
+    }
+
+    public GameObject PlaceBlock(GameObject blockType, Vector3 targetPosition, Transform parent) {
+        GameObject placedBlock = Instantiate(blockType, targetPosition, Quaternion.identity, parent);
+        return placedBlock;
     }
 }

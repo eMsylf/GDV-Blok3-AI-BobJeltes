@@ -6,9 +6,9 @@ public class Tile {
     private int f;
     private int g;
     private int h;
-    private Vector2Int postition;
+    private Vector3 postition;
 
-    public Tile(int f, int g, int h, Vector2Int postition) {
+    public Tile(int f, int g, int h, Vector3 postition) {
         this.f = f;
         this.g = g;
         this.h = h;
