@@ -1,5 +1,6 @@
 ﻿//Source: https://www.raywenderlich.com/3016-introduction-to-a-pathfinding
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -118,7 +119,9 @@ public class Pathfinding : MonoBehaviour {
             testLocation = currentTransform.position + testDirection;
 
             neighbors.Add(testLocation);
-            openList[5, 5] = new Tile(1,2,3, currentTransform.position);
+            openList = new Tile[5, 5];
+
+            
 
             linePositions.SetValue(currentTransform.position, 0);
             linePositions.SetValue(currentTransform.position + transform.right * -1, 1);

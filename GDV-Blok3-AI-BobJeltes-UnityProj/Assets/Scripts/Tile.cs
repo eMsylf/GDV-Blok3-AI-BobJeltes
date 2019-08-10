@@ -3,29 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile {
-    private int f;
-    private int g;
-    private int h;
+    public bool IsWall;
+
+    private int fCost;
+    private int gCost;
+    private int hCost;
     private Vector3 postition;
 
-    public Tile(int f, int g, int h, Vector3 postition) {
-        this.f = f;
-        this.g = g;
-        this.h = h;
+    public Tile(int fCost, int gCost, int hCost, Vector3 postition) {
+        this.fCost = fCost;
+        this.gCost = gCost;
+        this.hCost = hCost;
         this.postition = postition;
     }
 
     public int FCost {
         get {
-            return (g + h);
+            return (gCost + hCost);
         }
     }
 
     public int CalculateG() {
-        return g;
+        return gCost;
     }
 
     public int CalculateH() {
-        return h;
+        return hCost;
     }
 }

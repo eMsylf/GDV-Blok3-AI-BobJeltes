@@ -4393,7 +4393,7 @@ MonoBehaviour:
   TileGrid: {fileID: 0}
   TestRange: 1
   countdown: 60
-  PathFindSpeed: 1
+  PathFindSpeed: 30
   Goal: {fileID: 671617401}
   linePositions:
   - {x: 0, y: 0, z: 0}
