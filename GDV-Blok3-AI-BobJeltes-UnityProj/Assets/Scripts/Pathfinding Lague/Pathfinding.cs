@@ -44,7 +44,7 @@ namespace Lague {
 
                     if (currentNode == targetNode) {
                         sw.Stop();
-                        print("Path found in: " + sw.ElapsedMilliseconds + " ms");
+                        //print("Path found in: " + sw.ElapsedMilliseconds + " ms");
                         pathSuccess = true;
                         break;
                     }

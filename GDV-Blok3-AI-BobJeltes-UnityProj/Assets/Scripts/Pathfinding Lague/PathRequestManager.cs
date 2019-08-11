@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
 namespace Lague {
     public class PathRequestManager : MonoBehaviour {
         Queue<PathRequest> pathRequestQueue = new Queue<PathRequest>();
@@ -17,10 +16,6 @@ namespace Lague {
         private void Awake() {
             instance = this;
             pathfinding = GetComponent<Pathfinding>();
-        }
-
-        private void Update() {
-            Debug.Log(pathRequestQueue.Count);
         }
 
         public static void RequestPath(Vector3 pathStart, Vector3 pathEnd, Action<Vector3[], bool> callback) {
