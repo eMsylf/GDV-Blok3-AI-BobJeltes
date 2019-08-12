@@ -11,6 +11,7 @@ public class Drone : MonoBehaviour {
     [SerializeField] private float speed = 5f;
     private float speedMultiplier = 1f;
     [SerializeField] private Shooting shooting;
+    [SerializeField] private Shooting shooting2;
     public GameObject minion;
 
     private float _attackRange = 3f;
@@ -87,13 +88,20 @@ public class Drone : MonoBehaviour {
             case DroneState.Attack: {
                     if (_target != null) {
                         if (shotDelay <= 0) {
-                            shooting.FireBullet();
+                            if (shooting != null) {
+                                shooting.FireBullet();
+                            }
+                            if (shooting2 != null) {
+                                shooting2.FireBullet();
+                            }
                             shotDelay = ShotDelay;
                         } else {
                             shotDelay -= 1;
                         }
-                    } 
-                    _currentState = DroneState.Wander;
+                    }
+                    if (Vector3.Distance(transform.position, _target.transform.position) > _attackRange) {
+                        _currentState = DroneState.Wander;
+                    }
 
                     break;
                 }
@@ -118,7 +126,10 @@ public class Drone : MonoBehaviour {
                         GetDestination();
                     }
 
-                    
+                    break;
+                }
+            case DroneState.SpawnMinion: {
+                    // Spawn a minion behind the boss
 
                     break;
                 }
@@ -200,5 +211,6 @@ public enum DroneState {
     Wander,
     Chase,
     Attack,
-    Panic
+    Panic,
+    SpawnMinion
 }

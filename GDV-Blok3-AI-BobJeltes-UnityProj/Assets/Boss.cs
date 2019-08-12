@@ -10,7 +10,7 @@ public class Boss : MonoBehaviour {
     }
 
     public void Die() {
-        LevelManager.levelManager.RestartLevel();
+        LevelManager.levelManager.WinGame();
     }
 
     public void SpawnMinions() {
