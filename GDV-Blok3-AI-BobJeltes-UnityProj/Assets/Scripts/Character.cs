@@ -14,7 +14,6 @@ public class Character : MonoBehaviour {
 
     public void TakeDamage(int amount) {
         Health -= amount;
-        Health = Mathf.Clamp(Health, 0, 150);
         Debug.Log(name + " takes " + amount + " damage");
         if (Health <= 0) {
             if (GetComponent<Boss>() != null) {
@@ -29,5 +28,6 @@ public class Character : MonoBehaviour {
     
 
     void Update() {
+        Health = Mathf.Clamp(Health, 0f, 200f);
     }
 }

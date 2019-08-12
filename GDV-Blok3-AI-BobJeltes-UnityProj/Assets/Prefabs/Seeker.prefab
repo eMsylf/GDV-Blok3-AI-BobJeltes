@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 30
+  speed: 28
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -129,8 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPlayer: 0
-  MaxHealth: 25
-  Health: 25
+  MaxHealth: 50
+  Health: 50
 --- !u!114 &5084682005774094250
 MonoBehaviour:
   m_ObjectHideFlags: 0

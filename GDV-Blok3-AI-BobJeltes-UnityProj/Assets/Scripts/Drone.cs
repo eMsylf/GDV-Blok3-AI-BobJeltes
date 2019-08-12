@@ -1,4 +1,4 @@
-﻿// This code belongs to Unity3D College, and was modified by Bob Jeltes https://www.youtube.com/watch?v=YdERlPfwUb0&t=9s&ab_channel=Unity3dCollege
+﻿// This code was made using a tutrial by Unity3D College, and was modified by Bob Jeltes https://www.youtube.com/watch?v=YdERlPfwUb0&t=9s&ab_channel=Unity3dCollege
 
 using System.Linq;
 using UnityEngine;
@@ -128,11 +128,6 @@ public class Drone : MonoBehaviour {
 
                     break;
                 }
-            case DroneState.SpawnMinion: {
-                    // Spawn a minion behind the boss
-
-                    break;
-                }
         }
     }
 
@@ -211,6 +206,5 @@ public enum DroneState {
     Wander,
     Chase,
     Attack,
-    Panic,
-    SpawnMinion
+    Panic
 }
