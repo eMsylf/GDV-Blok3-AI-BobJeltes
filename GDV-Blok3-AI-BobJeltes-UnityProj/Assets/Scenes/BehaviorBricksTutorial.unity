@@ -491,13 +491,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999951077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c870f15ccdb8149bfb2998e2e7063f, type: 3}
+  m_Script: {fileID: 11500000, guid: 388fbab5ba0e0f54c9a320127301e63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 197114, guid: 9a13705e440519e4ea5b248f89a0ba6f, type: 3}
-  position: {x: 20, y: 0.5, z: 20}
-  wanderArea: {fileID: 2016349709}
-  player: {fileID: 99947096}
+  Prefab: {fileID: 197114, guid: 9a13705e440519e4ea5b248f89a0ba6f, type: 3}
+  WanderArea: {fileID: 2016349709}
+  Player: {fileID: 99947096}
+  Spawns: 750
 --- !u!4 &1999951079
 Transform:
   m_ObjectHideFlags: 0

@@ -19,10 +19,5 @@ namespace BehaviorBricks {
                 behaviorExecutor.SetBehaviorParam("player", player);
             }
         }
-
-        void Update() {
-            // hier was ik
-            a;
-        }
     }
 }
