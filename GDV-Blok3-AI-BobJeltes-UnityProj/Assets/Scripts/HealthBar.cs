@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthBar : MonoBehaviour {
-    public Transform bar;
+    public Transform Bar;
     public Character HealthScript;
     private float health;
 
 
     void Start() {
-        bar.localScale = new Vector3(.4f, 1f);
+        Bar.localScale = new Vector3(.4f, 1f);
         health = HealthScript.Health / HealthScript.MaxHealth;
         SetSize(health);
     }
@@ -23,8 +23,8 @@ public class HealthBar : MonoBehaviour {
         }
     }
     public void SetSize(float sizeNormalized) {
-        Debug.Log(HealthScript.Health + " / " + HealthScript.MaxHealth + " = " + health);
-        Debug.Log(sizeNormalized);
-        bar.localScale = new Vector3(sizeNormalized, 1f);
+        //Debug.Log(HealthScript.Health + " / " + HealthScript.MaxHealth + " = " + health);
+        //Debug.Log(sizeNormalized);
+        Bar.localScale = new Vector3(sizeNormalized, 1f);
     }
 }

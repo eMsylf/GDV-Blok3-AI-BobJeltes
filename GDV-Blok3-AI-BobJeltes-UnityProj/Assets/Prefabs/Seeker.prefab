@@ -223,11 +223,22 @@ PrefabInstance:
       propertyPath: HealthScript
       value: 
       objectReference: {fileID: 148805247546177278}
+    - target: {fileID: 3516706796589798064, guid: c383cc811e0bf4749895b0499ee8829b,
+        type: 3}
+      propertyPath: Bar
+      value: 
+      objectReference: {fileID: 8199364583901801873}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c383cc811e0bf4749895b0499ee8829b, type: 3}
 --- !u!4 &8199364584733112166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3516706796589798067, guid: c383cc811e0bf4749895b0499ee8829b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4684909744085837269}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8199364583901801873 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3516706795322214468, guid: c383cc811e0bf4749895b0499ee8829b,
     type: 3}
   m_PrefabInstance: {fileID: 4684909744085837269}
   m_PrefabAsset: {fileID: 0}

@@ -10,6 +10,7 @@ public class CameraRotationHorizontal : MonoBehaviour {
     [SerializeField] private Transform player;
     [SerializeField] private Transform playerArt;
     [SerializeField] private Quaternion storedRotation;
+    [SerializeField] private float horizontalR;
     [SerializeField] private float vertical;
     [SerializeField] private float horizontal;
 
@@ -28,12 +29,20 @@ public class CameraRotationHorizontal : MonoBehaviour {
 
     void Update() {
         // Camera rotation
+        if (!Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E))
+        {
+            horizontalR *= 0.5f;
+        }
+        horizontalR = Input.GetAxis("HorizontalR");
+
         cameraRotationY = Mathf.Lerp(
             cameraRotationY, 
-            Input.GetAxis("HorizontalR") * rotationSpeed, 
+            horizontalR * rotationSpeed, 
             rotationSmoothing
             );
         transform.Rotate(0f, cameraRotationY, 0f, Space.Self);
+
+        Debug.Log(Input.GetAxis("HorizontalR"));
 
         // Player rotation
         Vector3 forwardDirectionCamera = Vector3.Scale(transform.forward, new Vector3(1, 0, 1));

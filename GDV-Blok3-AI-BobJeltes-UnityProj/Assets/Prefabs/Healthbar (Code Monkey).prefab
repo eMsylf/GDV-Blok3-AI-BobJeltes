@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 3516706796589798064}
   - component: {fileID: 3516706796589798065}
   m_Layer: 0
-  m_Name: Healthbar
+  m_Name: Healthbar (Code Monkey)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598e6e2bfa08a5c45884fed1b09665f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bar: {fileID: 3516706795322214468}
+  Bar: {fileID: 3516706795322214468}
   HealthScript: {fileID: 0}
 --- !u!114 &3516706796589798065
 MonoBehaviour:
