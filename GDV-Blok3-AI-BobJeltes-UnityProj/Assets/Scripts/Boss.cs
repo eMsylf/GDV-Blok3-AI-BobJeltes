@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pada1.BBCore;
 
 public class Boss : MonoBehaviour {
-
 
     void Start() {
 

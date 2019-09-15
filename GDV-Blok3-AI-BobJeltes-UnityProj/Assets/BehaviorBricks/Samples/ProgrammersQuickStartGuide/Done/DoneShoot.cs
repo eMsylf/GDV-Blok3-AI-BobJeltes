@@ -4,8 +4,8 @@ using Pada1.BBCore.Tasks;     // TaskStatus
 namespace BBSamples.PQSG // Programmers Quick Start Guide
 {
     /// <summary>
-    /// DoneShootOnce is a action inherited from DoneShootOnce and Periodically clones a 'bullet' and
-    /// shoots it throught the Forward axis with the specified velocity. This action never ends.
+    /// DoneShootOnce is an action inherited from DoneShootOnce and Periodically clones a 'bullet' and
+    /// shoots it through the Forward axis with the specified velocity. This action never ends.
     /// </summary>
     [Action("Samples/ProgQuickStartGuide/Shoot")]
     [Help("Periodically clones a 'bullet' and shoots it throught the Forward axis " +

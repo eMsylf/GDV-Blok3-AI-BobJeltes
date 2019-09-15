@@ -8,7 +8,7 @@ public static class TestGamepadEditor
 
     static TestGamepadEditor()
     {
-        EditorApplication.hierarchyWindowChanged += OnHierarchyChange;
+        EditorApplication.hierarchyChanged += OnHierarchyChange;
     }
     static void OnHierarchyChange()
     {
@@ -582,7 +582,7 @@ public static class TestGamepadEditor
 
 
             //we only need to execute once on our scenes            
-            EditorApplication.hierarchyWindowChanged -= OnHierarchyChange;
+            EditorApplication.hierarchyChanged -= OnHierarchyChange;
         }
 
     }

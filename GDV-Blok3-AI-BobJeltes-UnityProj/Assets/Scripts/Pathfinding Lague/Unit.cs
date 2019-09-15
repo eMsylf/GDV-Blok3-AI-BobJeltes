@@ -120,6 +120,10 @@ namespace Lague {
 
         IEnumerator FollowPath() {
             Vector3 currentWaypoint;
+            if (path == null || path.Length == 0 || path[0] == null)
+            {
+                yield break;
+            }
             currentWaypoint = path[0];
             while (true) {
                 if (transform.position == currentWaypoint) {

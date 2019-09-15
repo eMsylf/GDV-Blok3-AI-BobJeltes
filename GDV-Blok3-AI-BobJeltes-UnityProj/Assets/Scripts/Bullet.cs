@@ -8,16 +8,18 @@ public class Bullet : MonoBehaviour {
     public LayerMask EnemyLayer;
 
     void Start() {
-        StartCoroutine(DespawnAfter(BulletLifetime));
+        Destroy(gameObject, 2f);
+
+        //StartCoroutine(DespawnAfter(BulletLifetime));
     }
 
     private void OnCollisionEnter(Collision collision) {
         StopCoroutine(DespawnAfter(BulletLifetime));
         if (collision.gameObject.GetComponent<Character>() != null) {
             Character _character = collision.gameObject.GetComponent<Character>();
-            if (!_character.IsPlayer) {
-                Debug.Log("Hit a character that is not the player");
-            }
+            //if (!_character.IsPlayer) {
+            //    Debug.Log("Hit a character that is not the player");
+            //}
             _character.TakeDamage(Damage);
         }
         gameObject.SetActive(false);
@@ -27,5 +29,4 @@ public class Bullet : MonoBehaviour {
         yield return new WaitForSeconds(_seconds);
         gameObject.SetActive(false);
     }
-
 }

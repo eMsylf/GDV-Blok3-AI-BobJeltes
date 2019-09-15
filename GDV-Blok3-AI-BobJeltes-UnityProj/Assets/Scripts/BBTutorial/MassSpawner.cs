@@ -31,7 +31,7 @@ namespace BehaviorBricks
                 BehaviorExecutor component = 
                     instance.GetComponent<BehaviorExecutor>();
                 component.SetBehaviorParam("wanderArea", WanderArea);
-                component.SetBehaviorParam("player", entities[Random.Range(0, entities.Count)]);
+                component.SetBehaviorParam("player", Player);
 
                 ++spawnCount;
 

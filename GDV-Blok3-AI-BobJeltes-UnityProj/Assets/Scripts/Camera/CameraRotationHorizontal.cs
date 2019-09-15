@@ -29,10 +29,6 @@ public class CameraRotationHorizontal : MonoBehaviour {
 
     void Update() {
         // Camera rotation
-        if (!Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E))
-        {
-            horizontalR *= 0.5f;
-        }
         horizontalR = Input.GetAxis("HorizontalR");
 
         cameraRotationY = Mathf.Lerp(
@@ -42,7 +38,7 @@ public class CameraRotationHorizontal : MonoBehaviour {
             );
         transform.Rotate(0f, cameraRotationY, 0f, Space.Self);
 
-        Debug.Log(Input.GetAxis("HorizontalR"));
+        //Debug.Log(Input.GetAxis("HorizontalR"));
 
         // Player rotation
         Vector3 forwardDirectionCamera = Vector3.Scale(transform.forward, new Vector3(1, 0, 1));
