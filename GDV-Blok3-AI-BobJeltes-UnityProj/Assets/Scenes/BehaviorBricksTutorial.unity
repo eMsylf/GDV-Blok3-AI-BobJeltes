@@ -534,26 +534,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
         type: 3}
-      propertyPath: blackboard.objectParams.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
-        type: 3}
-      propertyPath: blackboard.objectParamsNames.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
-        type: 3}
-      propertyPath: blackboard.intParams.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
-        type: 3}
-      propertyPath: blackboard.intParamsNames.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
-        type: 3}
       propertyPath: blackboard.floatParams.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -564,19 +544,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
         type: 3}
-      propertyPath: behavior
-      value: 
-      objectReference: {fileID: 11400000, guid: 5896ffac11fe182469388c76cd14af68,
-        type: 2}
-    - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
-        type: 3}
-      propertyPath: blackboard.objectParamsNames.Array.data[0]
-      value: player
+      propertyPath: blackboard.objectParams.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
         type: 3}
-      propertyPath: blackboard.objectParamsNames.Array.data[1]
-      value: wanderArea
+      propertyPath: blackboard.objectParamsNames.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
         type: 3}
@@ -585,29 +559,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
         type: 3}
-      propertyPath: blackboard.floatParams.Array.data[0]
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
-        type: 3}
-      propertyPath: blackboard.floatParamsNames.Array.data[0]
-      value: bulletVelocity
-      objectReference: {fileID: 0}
-    - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
-        type: 3}
       propertyPath: blackboard.objectParams.Array.data[1]
       value: 
       objectReference: {fileID: 2016349709}
-    - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
-        type: 3}
-      propertyPath: blackboard.objectParamsNames.Array.data[2]
-      value: shootPoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
-        type: 3}
-      propertyPath: blackboard.objectParamsNames.Array.data[3]
-      value: bullet
-      objectReference: {fileID: 0}
     - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
         type: 3}
       propertyPath: blackboard.objectParams.Array.data[0]
@@ -620,23 +574,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
         type: 3}
+      propertyPath: blackboard.objectParams.Array.data[3]
+      value: 
+      objectReference: {fileID: 4081533011333023576, guid: 86866a7275abd344090f22dd23ad8562,
+        type: 3}
+    - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
+        type: 3}
       propertyPath: blackboard.objectParams.Array.data[2]
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
         type: 3}
-      propertyPath: blackboard.objectParams.Array.data[3]
+      propertyPath: behavior
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6478835031246937617, guid: 943ea33dcf014cb46bbfb58338df4e49,
-        type: 3}
-      propertyPath: maxTasksPerTick
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 5896ffac11fe182469388c76cd14af68,
+        type: 2}
     - target: {fileID: 4635266468917280693, guid: 943ea33dcf014cb46bbfb58338df4e49,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608098215506962935, guid: 943ea33dcf014cb46bbfb58338df4e49,
+        type: 3}
+      propertyPath: m_Name
+      value: shootPoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943ea33dcf014cb46bbfb58338df4e49, type: 3}

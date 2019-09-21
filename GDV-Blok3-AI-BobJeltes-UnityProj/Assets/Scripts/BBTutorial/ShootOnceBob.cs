@@ -3,10 +3,9 @@
 using Pada1.BBCore;           // Code attributes
 using Pada1.BBCore.Tasks;     // TaskStatus
 
-[Action("MyActions/ShootOnce")]
-[Help("Clone a 'bullet' and shoots it through the Forward axis with the " +
-      "specified velocity.")]
-public class ShootOnce : BBUnity.Actions.GOAction
+[Action("MyActions/ShootOnceBob")]
+[Help("FUCK JOU BEHAVIOR BRICKS")]
+public class ShootOnceBob : BBUnity.Actions.GOAction
 {
     // Define the input parameter "shootPoint".
     [InParam("shootPoint")]
@@ -35,14 +34,14 @@ public class ShootOnce : BBUnity.Actions.GOAction
             }
         }
 
-        if (bullet == null)
-        {
-            Debug.Log("Bullet is null");
-            return TaskStatus.FAILED;
-        }
         if (shootPoint == null)
         {
             Debug.Log("Shoot Point is null");
+            return TaskStatus.FAILED;
+        }
+        if (bullet == null)
+        {
+            Debug.Log("Bullet is null");
             return TaskStatus.FAILED;
         }
 
