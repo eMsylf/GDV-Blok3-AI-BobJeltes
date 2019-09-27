@@ -1,0 +1,4 @@
+tree("SeperateMove")
+	sequence
+		MoveTo(-2.0, -2.0)
+		Wait(0.6)
