@@ -8,10 +8,6 @@ public class Character : MonoBehaviour {
     public float MaxHealth = 100;
     public float Health;
 
-    void Start() {
-        
-    }
-
     public void TakeDamage(int amount) {
         Health -= amount;
         Debug.Log(name + " takes " + amount + " damage");
@@ -24,8 +20,6 @@ public class Character : MonoBehaviour {
             gameObject.SetActive(false);
         }
     }
-
-    
 
     void Update() {
         Health = Mathf.Clamp(Health, 0f, 200f);

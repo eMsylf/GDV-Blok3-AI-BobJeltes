@@ -1,20 +1,20 @@
 tree("Root")
-	repeat
-		fallback
-			tree("Live")
-			tree("Die")
+	fallback
+		tree("Live")
+		tree("Die")
 
 tree("Live")
-	sequence
-		IsHealthOverZero
-		IsHealthOverFiftyPercent
+	while IsHealthOverZero
 		fallback
+			while IsHealthBelowFiftyPercent
+				tree("Panic")
 			while IsPlayerInChaseRange
-				tree("Chase")
-			while IsPlayerInAttackRange
-				tree("Attack")
-			while not IsPlayerInChaseRange
-				tree("Wander")
+				fallback
+					while IsPlayerInAttackRange
+						tree("Attack")
+					tree("Chase")
+			tree("Wander")
+
 
 tree("Wander")
 	Wander
@@ -24,11 +24,12 @@ tree("Chase")
 
 tree("Attack")
 	sequence
+		Wait(0.2)
 		Attack
-		Wait(0.6)
 
 tree("Panic")
-	Panic
+	sequence
+		Panic
 
 tree("Die")
 	Die

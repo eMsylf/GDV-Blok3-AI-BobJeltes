@@ -7,28 +7,14 @@ using System;
 namespace Lague {
     public class Pathfinding : MonoBehaviour {
 
-        //public Transform seeker, target;
-
-        PathRequestManager requestManager;
-
         Grid grid;
 
         private void Awake() {
-            requestManager = GetComponent<PathRequestManager>();
             grid = GetComponent<Grid>();
         }
 
-        public void StartFindPath(Vector3 startPos, Vector3 targetPos) {
-            StartCoroutine(FindPath(startPos, targetPos));
-        }
-
-        public IEnumerator FindPath(Vector3 startPos, Vector3 targetPos) {
-
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
+        public Vector3[] FindPath(Vector3 startPos, Vector3 targetPos) {
             Vector3[] waypoints = new Vector3[0];
-            bool pathSuccess = false;
 
             Node startNode = grid.NodeFromWorldPoint(startPos);
             Node targetNode = grid.NodeFromWorldPoint(targetPos);
@@ -42,10 +28,7 @@ namespace Lague {
                     Node currentNode = openSet.RemoveFirst();
                     closedSet.Add(currentNode);
 
-                    if (currentNode == targetNode) {
-                        sw.Stop();
-                        //print("Path found in: " + sw.ElapsedMilliseconds + " ms");
-                        pathSuccess = true;
+                    if (currentNode == targetNode) { // Path success
                         break;
                     }
 
@@ -62,18 +45,12 @@ namespace Lague {
 
                             if (!openSet.Contains(neighbor)) {
                                 openSet.Add(neighbor);
-                            } else {
-                                //openSet.UpdateItem(neighbor);
                             }
                         }
                     }
                 }
             }
-            yield return null;
-            if (pathSuccess) {
-                waypoints = RetracePath(startNode, targetNode);
-            }
-            requestManager.FinishedProcessingPath(waypoints, pathSuccess);            
+            return waypoints = RetracePath(startNode, targetNode);
         }
 
         Vector3[] RetracePath(Node startNode, Node endNode) {

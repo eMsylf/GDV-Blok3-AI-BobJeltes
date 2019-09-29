@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour {
     public Transform RotationBody;
-    public Transform Gun;
+    public Transform ShotPoint1;
+    public Transform ShotPoint2;
     public Bullet Bullet;
     public LayerMask EnemyLayer;
     public int Damage = 1;
-    public float ShotSpeed;
-    private int beamDuration;
-    MeshRenderer HitBoxVisual;
-    //public BoxCollider HitBox;
-    //public int BeamDuration = 3;
+    public float ShotSpeed = 1f;
     private Character character;
     bool isPlayer;
 
@@ -27,16 +24,8 @@ public class Shooting : MonoBehaviour {
     }
 
     void Update() {
-        beamDuration -= 1;
-        if (Input.GetButtonDown("Fire2") && beamDuration <= 0 && isPlayer) {
+        if (Input.GetButtonDown("Fire2") && isPlayer) {
             FireBullet();
-            //beamDuration = BeamDuration;
-            //Debug.Log("Shoot");
-            //HitBox.enabled = true;
-            //HitBoxVisual.enabled = true;
-        } else if (beamDuration <= 0) {
-            //HitBox.enabled = false;
-            //HitBoxVisual.enabled = false;
         }
     }
     private void OnTriggerEnter(Collider other) {
@@ -46,10 +35,18 @@ public class Shooting : MonoBehaviour {
     }
 
     public void FireBullet() {
-        Bullet bullet = Instantiate(Bullet, Gun.position + Gun.forward, RotationBody.rotation);
-        bullet.Damage = Damage;
-        bullet.EnemyLayer = EnemyLayer;
-        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * ShotSpeed, ForceMode.Impulse);
+        if (ShotPoint1 != null) {
+            Bullet bullet = Instantiate(Bullet, ShotPoint1.position + ShotPoint1.forward, RotationBody.rotation);
+            bullet.Damage = Damage;
+            bullet.EnemyLayer = EnemyLayer;
+            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * ShotSpeed, ForceMode.Impulse);
+        }
+        if (ShotPoint2 != null) {
+            Bullet bullet = Instantiate(Bullet, ShotPoint2.position + ShotPoint2.forward, RotationBody.rotation);
+            bullet.Damage = Damage;
+            bullet.EnemyLayer = EnemyLayer;
+            bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * ShotSpeed, ForceMode.Impulse);
+        }
     }
 
 }

@@ -3,21 +3,38 @@ tree("Root")
 		tree("Live")
 		tree("Die")
 
-
-
 tree("Live")
+	while IsHealthOverZero
+		fallback
+			while IsPlayerInRange
+				tree("Attack")
+			while IsBossHealthBelowFiftyPercent
+				tree("FollowPlayer")
+			tree("FollowBoss")
+
+tree("Attack")
+	sequence
+		Wait(0.5)
+		Attack
+
+tree("FollowPlayer")
 	fallback
-		IsHealthBelowZero
-		IsPlayerInRange
-		IsBossHealthBelowThreshhold
-		tree("FollowBoss")
-		Succeed
+		while HasActivePath
+			fallback
+				while IsPlayerInRange
+					Tree("Attack")
+				FollowPath
+		GetNewPathToPlayer
 
 tree("FollowBoss")
 	fallback
-		IsBossClose
-		HasPathToBoss
-				
+		while IsBossClose
+			sequence
+				Wait(0.1)
+				HealBoss
+		while HasActivePath
+			FollowPath
+		GetNewPathToBoss	
 
 tree("Die")
 	Die

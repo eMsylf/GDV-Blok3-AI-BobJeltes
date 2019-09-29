@@ -7,89 +7,130 @@ using UnityEditor;
 public class Boss : MonoBehaviour {
 
     public Transform Player;
-    public int StartingHealth = 100;
+    public float StartingHealth = 100;
+    [SerializeField] public float currentHealth;
     [Range(0f, 10f)]
     public float ChaseRange = 6f;
     [Range(0f, 10f)]
     public float AttackRange = 2f;
+    [Range(.1f, 10f)]
+    public float Speed = 1f;
 
-    [SerializeField] private int currentHealth;
+    public LayerMask UnwalkableLayer;
+
+
     [SerializeField] private Shooting shooting;
 
     [SerializeField] private Vector3 start;
     [SerializeField] private Vector3 destination;
 
+    public Character CharacterScript;
+
     private void Awake() {
-        currentHealth = StartingHealth;
+        CharacterScript = GetComponent<Character>();
+        StartingHealth = CharacterScript.MaxHealth;
+        currentHealth = CharacterScript.Health;
+
         Player = FindObjectOfType<Player>().transform;
         shooting = GetComponent<Shooting>();
     }
 
+    private void Update() {
+        StartingHealth = CharacterScript.MaxHealth;
+        currentHealth = CharacterScript.Health;
+    }
+
     #region Tasks
     [Task]
-    public bool IsHealthOverZero() {
-        if (currentHealth >= 0) {
-            Task.current.Succeed();
-            return true;
+    public bool IsHealthOverZero {
+        get {
+            if (currentHealth >= 0) {
+                Task.current.Succeed();
+                return true;
+            }
+            Task.current.Fail();
+            return false;
         }
-        Task.current.Fail();
-        return false;
     }
 
     [Task]
-    public bool IsHealthOverFiftyPercent() {
-        if (currentHealth >= StartingHealth / 2) {
-            Task.current.Succeed();
-            return true;
+    public bool IsHealthBelowFiftyPercent {
+        get {
+            if (currentHealth <= StartingHealth / 2) {
+                return true;
+            }
+            return false;
         }
-        Task.current.Fail();
-        return false;
     }
 
     [Task]
-    public bool IsPlayerInChaseRange() {
-        if (Vector3.Distance(transform.position, Player.position) < ChaseRange) {
-            return true;
+    public bool IsPlayerInChaseRange {
+        get {
+            if (Vector3.Distance(transform.position, Player.position) < ChaseRange && !Physics.Linecast(transform.position, Player.position, UnwalkableLayer)) {
+                return true;
+            }
+            return false;
         }
-        return false;
     }
 
     [Task]
-    public bool IsPlayerInAttackRange() {
-        if (Vector3.Distance(transform.position, Player.position) < AttackRange) {
-            Task.current.Succeed();
-            return true;
+    public bool IsPlayerInAttackRange {
+        get {
+            if (Vector3.Distance(transform.position, Player.position) < AttackRange) {
+                return true;
+            }
+            return false;
         }
-        Task.current.Fail();
-        return false;
+    }
+
+    [Task]
+    public bool IsDestinationReached {
+        get {
+            if (Vector3.Distance(transform.position, destination) < .5f) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     [Task]
     public void Chase() {
-        Debug.Log("Chase");
-        transform.Translate(Player.position);
+        transform.LookAt(Player);
+        transform.position += transform.forward * Speed * Time.deltaTime;
+        Task.current.Succeed();
     }
 
     [Task]
     public void Attack() {
-        Debug.Log("Attack");
+        transform.LookAt(Player);
         shooting.FireBullet();
+        Task.current.Succeed();
     }
 
     [Task]
     public void Wander() {
-        Debug.Log("Wandering");
-        if (destination == null || destination == transform.position || destination == Vector3.zero) {
+        if (destination == null || IsDestinationReached|| destination == Vector3.zero) {
             // Get new destination
-            GetNewDestination();
+            GetNewDestination(20f);
+        } else {
+            transform.LookAt(destination);
+            transform.position = Vector3.MoveTowards(transform.position, destination, Speed * Time.deltaTime);
         }
-        transform.position = Vector3.Lerp(start, destination, .5f);
         Task.current.Succeed();
     }
 
     [Task]
     public void Panic() {
-        Debug.Log("Panic");
+        if (destination == null || IsDestinationReached|| destination == Vector3.zero) {
+            // Get new destination
+            GetNewDestination(5f);
+            shooting.FireBullet();
+        } else {
+            transform.LookAt(destination);
+            transform.position = Vector3.MoveTowards(transform.position, destination, Speed * 2.0f * Time.deltaTime);
+        }
+        Task.current.Succeed();
     }
 
     [Task]
@@ -100,12 +141,21 @@ public class Boss : MonoBehaviour {
     #endregion
 
     #region Functions
-    void GetNewDestination() {
-        start = transform.position;
-        destination = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f));
-        Debug.Log("Getting new destination: " + destination);
+    void GetNewDestination(float destinationRadius) {
+
+        for (int i = 0; i < 15; i++) {
+            destination = transform.position + new Vector3(Random.Range(-destinationRadius, destinationRadius), 0f, Random.Range(-destinationRadius, destinationRadius));
+            if (Physics.Linecast(transform.position, destination)) {
+            } else {
+                start = transform.position;
+                return;
+            }
+        }
+        destination = start; // fallback condition: move back to previous position if no new destination can be found in time
     }
     #endregion
+
+#if UNITY_EDITOR
 
     #region Gizmos
     private void OnDrawGizmosSelected() {
@@ -113,6 +163,10 @@ public class Boss : MonoBehaviour {
         Handles.DrawWireDisc(transform.position, transform.up, ChaseRange);
         Handles.color = Color.red;
         Handles.DrawWireDisc(transform.position, transform.up, AttackRange + 1);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, destination);
+        Gizmos.DrawWireCube(destination, Vector3.one);
     }
     #endregion
+#endif
 }
