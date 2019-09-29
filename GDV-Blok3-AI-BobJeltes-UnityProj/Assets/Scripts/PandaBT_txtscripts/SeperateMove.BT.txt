@@ -1,0 +1,12 @@
+tree("SeperateMove")
+	sequence
+		MoveTo(-2.0, -2.0)
+		Wait(0.6)
+
+tree ("ChangeColor")
+	sequence
+		SetColor(1.0, 0.0, 0.0)
+		Wait(0.6)
+		SetColor(1.0, 0.0, 1.0)
+		Wait(0.6)
+		SetColor(1.0, 1.0, 0.0)

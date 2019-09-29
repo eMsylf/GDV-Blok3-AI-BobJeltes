@@ -1,0 +1,24 @@
+tree("Root")
+	fallback
+		tree("Live")
+		tree("Die")
+
+
+
+tree("Live")
+	fallback
+		IsHealthBelowZero
+		IsPlayerInRange
+		IsBossHealthBelowThreshhold
+		tree("FollowBoss")
+		Succeed
+
+tree("FollowBoss")
+	fallback
+		IsBossClose
+		HasPathToBoss
+				
+
+tree("Die")
+	Die
+		

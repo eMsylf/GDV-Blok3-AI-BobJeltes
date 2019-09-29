@@ -9,3 +9,4 @@ tree("Root")
 		MoveTo(-1.0, 1.0) //topleft
 		Wait(.06)
 		tree("SeperateMove")
+		tree("ChangeColor")

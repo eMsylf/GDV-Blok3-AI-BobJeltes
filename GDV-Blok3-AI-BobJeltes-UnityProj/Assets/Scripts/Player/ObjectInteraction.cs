@@ -29,10 +29,6 @@ public class ObjectInteraction : MonoBehaviour {
 
     public bool isHoldingSomething;
 
-    void Start() {
-
-    }
-
     void Update() {
         Physics.Raycast(new Ray(artTransform.position, artTransform.forward), out hitInfo, maxInteractionRange);
 

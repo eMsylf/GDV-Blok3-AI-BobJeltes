@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Panda;
 
-public class BehaviorCollection : MonoBehaviour
-{
+public class BehaviorCollection : MonoBehaviour {
     public Transform PlayerArt;
     public Transform Gun;
     public Bullet Bullet;
@@ -32,5 +31,10 @@ public class BehaviorCollection : MonoBehaviour
     [Task]
     private void Attack(Transform _target) {
         transform.LookAt(new Vector3(_target.position.x, transform.position.y, _target.position.z));
+    }
+
+    [Task]
+    private void ChangeColor() {
+
     }
 }

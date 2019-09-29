@@ -22,7 +22,7 @@ namespace Lague {
             StartCoroutine(FindPath(startPos, targetPos));
         }
 
-        private IEnumerator FindPath(Vector3 startPos, Vector3 targetPos) {
+        public IEnumerator FindPath(Vector3 startPos, Vector3 targetPos) {
 
             Stopwatch sw = new Stopwatch();
             sw.Start();

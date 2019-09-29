@@ -22,7 +22,7 @@ namespace Lague {
 
         bool isFollowingPath;
 
-        Character characterScript;
+        [SerializeField] Character characterScript;
 
         void Start() {
             actionDelay = ActionDelay;

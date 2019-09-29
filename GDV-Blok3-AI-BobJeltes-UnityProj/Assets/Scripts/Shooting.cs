@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour {
-    public Transform PlayerArt;
+    public Transform RotationBody;
     public Transform Gun;
     public Bullet Bullet;
     public LayerMask EnemyLayer;
@@ -46,7 +46,7 @@ public class Shooting : MonoBehaviour {
     }
 
     public void FireBullet() {
-        Bullet bullet = Instantiate(Bullet, Gun.position + Gun.forward, PlayerArt.rotation);
+        Bullet bullet = Instantiate(Bullet, Gun.position + Gun.forward, RotationBody.rotation);
         bullet.Damage = Damage;
         bullet.EnemyLayer = EnemyLayer;
         bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * ShotSpeed, ForceMode.Impulse);

@@ -1,0 +1,34 @@
+tree("Root")
+	repeat
+		fallback
+			tree("Live")
+			tree("Die")
+
+tree("Live")
+	sequence
+		IsHealthOverZero
+		IsHealthOverFiftyPercent
+		fallback
+			while IsPlayerInChaseRange
+				tree("Chase")
+			while IsPlayerInAttackRange
+				tree("Attack")
+			while not IsPlayerInChaseRange
+				tree("Wander")
+
+tree("Wander")
+	Wander
+
+tree("Chase")
+	Chase
+
+tree("Attack")
+	sequence
+		Attack
+		Wait(0.6)
+
+tree("Panic")
+	Panic
+
+tree("Die")
+	Die
